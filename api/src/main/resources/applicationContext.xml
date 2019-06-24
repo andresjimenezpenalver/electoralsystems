@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+	<context:component-scan base-package="ajp.electoralsystems.algorithm.engine,ajp.electoralsystems.algorithm.dhont,ajp.electoralsystems.algorithm,ajp.electoralsystems.app.view,ajp.electoralsystems.app.controller"></context:component-scan>
+    -->
+ 
+	<!-- Algorithms -->
+	<!-- *********************************************************************************************************************************** -->
+	<bean id="dhontAlgorithm"
+		class="ajp.electoralsystems.algorithm.dhont.model.DhontAlgorithm"></bean>
+
+	<bean id="dhontSlowAlgorithm"
+		class="ajp.electoralsystems.algorithm.dhont.model.DhontSlowAlgorithm"></bean>
+	<!-- Service -->	
+	<bean id="algorithmEngine" class="ajp.electoralsystems.algorithm.engine.AlgorithmEngine">
+		<property name="algorithms">
+	        <list value-type="ajp.electoralsystems.model.algorithm">
+	            <ref bean="dhontAlgorithm"/>
+	            <ref bean="dhontSlowAlgorithm"/> 
+	        </list>
+	    </property>    
+	</bean>
+
+</beans>

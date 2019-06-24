@@ -1,0 +1,109 @@
+{
+    "district": {
+        "abstention": 25.802193717212347,
+        "turnout": 74.19780628278765,
+        "census": 34799107,
+        "blankVotes": 199511,
+        "name": "ESPAÑA",
+        "parties": [
+            {
+                "votePercentage": 28.973,
+                "name": "PSOE",
+                "votePercentageOverCensus": 0,
+                "votes": 7480755
+            },
+            {
+                "votePercentage": 16.871,
+                "name": "PP",
+                "votePercentageOverCensus": 0,
+                "votes": 4356023
+            },
+            {
+                "votePercentage": 16.021,
+                "name": "CS",
+                "votePercentageOverCensus": 0,
+                "votes": 4136600
+            },
+            {
+                "votePercentage": 11.16,
+                "name": "PODEMOS",
+                "votePercentageOverCensus": 0,
+                "votes": 2881445
+            },
+            {
+                "votePercentage": 10.369,
+                "name": "VOX",
+                "votePercentageOverCensus": 0,
+                "votes": 2677173
+            },
+            {
+                "votePercentage": 3.932,
+                "name": "ERC",
+                "votePercentageOverCensus": 0,
+                "votes": 1015355
+            },
+            {
+                "votePercentage": 2.381,
+                "name": "ECPGUANYEM",
+                "votePercentageOverCensus": 0,
+                "votes": 614738
+            },
+            {
+                "votePercentage": 1.927,
+                "name": "JUNTSPERCAT",
+                "votePercentageOverCensus": 0,
+                "votes": 497638
+            },
+            {
+                "votePercentage": 1.528,
+                "name": "PNV",
+                "votePercentageOverCensus": 0,
+                "votes": 394627
+            },
+            {
+                "votePercentage": 1.263,
+                "name": "PACMA",
+                "votePercentageOverCensus": 0,
+                "votes": 326045
+            },
+            {
+                "votePercentage": 1.002,
+                "name": "BILDU",
+                "votePercentageOverCensus": 0,
+                "votes": 258840
+            },
+            {
+                "votePercentage": 0.917,
+                "name": "PODEMOSEUMAREAS",
+                "votePercentageOverCensus": 0,
+                "votes": 236746
+            },
+            {
+                "votePercentage": 0.669,
+                "name": "COMPROMIS",
+                "votePercentageOverCensus": 0,
+                "votes": 172751
+            },
+            {
+                "votePercentage": 0.531,
+                "name": "CCA",
+                "votePercentageOverCensus": 0,
+                "votes": 137196
+            },
+            {
+                "votePercentage": 0.415,
+                "name": "NA",
+                "votePercentageOverCensus": 0,
+                "votes": 107124
+            },
+            {
+                "votePercentage": 0.202,
+                "name": "PRC",
+                "votePercentageOverCensus": 0,
+                "votes": 52197
+            }
+        ],
+        "invalidVotes": 275410,
+        "seats": 350
+    }
+}

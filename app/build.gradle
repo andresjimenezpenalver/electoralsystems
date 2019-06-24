@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'ISO-8859-1'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile group: 'thirdparties', name: 'hsqldb', version:'1.0'
+    compile group: 'thirdparties.jfreechart', name: 'jcommon', version:'0.9.6'
+    compile group: 'thirdparties.jfreechart', name: 'jfreechart', version:'0.9.21'
+    compile group: 'thirdparties.jfreechart', name: 'servlet', version:'1.0'
+    compile group: 'thirdparties', name: 'junit', version:'1.0'
+    compile group: 'org.json', name: 'json', version:'20151123'
+    compile group: 'org.aspectj', name: 'aspectjrt', version:'1.8.7'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.7'    
+}
+
+springBoot {
+    mainClass = 'ajp.electoralsystems.ElectoralSystemsBoot'
+}

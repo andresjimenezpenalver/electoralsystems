@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+	<context:component-scan base-package="ajp.electoralsystems.algorithm.engine,ajp.electoralsystems.algorithm.dhont,ajp.electoralsystems.algorithm,ajp.electoralsystems.app.view,ajp.electoralsystems.app.controller"></context:component-scan>
+ -->
+ 
+	<!-- Algorithms -->
+	<!-- *********************************************************************************************************************************** -->
+	<bean id="dhontAlgorithm"
+		class="ajp.electoralsystems.algorithm.dhont.model.DhontAlgorithm"></bean>
+
+	<bean id="dhontSlowAlgorithm"
+		class="ajp.electoralsystems.algorithm.dhont.model.DhontSlowAlgorithm"></bean>
+
+	<!-- Service -->	
+	<bean id="algorithmEngine" class="ajp.electoralsystems.algorithm.engine.AlgorithmEngine">
+		<property name="algorithms">
+	        <list value-type="ajp.electoralsystems.model.algorithm">
+	            <ref bean="dhontAlgorithm"/>
+	            <ref bean="dhontSlowAlgorithm"/>
+	        </list>
+	    </property>    
+	</bean>
+
+	<!-- Actions -->
+	<!-- *********************************************************************************************************************************** -->
+	<bean id="aboutAction" class="ajp.electoralsystems.app.controller.AboutAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="clearAction" class="ajp.electoralsystems.app.controller.ClearAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="clearPartyTableAction" class="ajp.electoralsystems.app.controller.ClearPartyTableAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="configAction" class="ajp.electoralsystems.app.controller.ConfigAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+		<property name="algorithmEngine" ref="algorithmEngine"></property>
+	</bean>
+	<bean id="exitAction" class="ajp.electoralsystems.app.controller.ExitAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="getDistrictFileAction" class="ajp.electoralsystems.app.controller.GetDistrictFileAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="getConfigAction" class="ajp.electoralsystems.app.controller.GetConfigAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="getDistrictAction" class="ajp.electoralsystems.app.controller.GetDistrictAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="saveDistrictFileAction" class="ajp.electoralsystems.app.controller.SaveDistrictFileAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>
+	<bean id="showConfigAction" class="ajp.electoralsystems.app.controller.ShowConfigAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+		<property name="algorithmEngine" ref="algorithmEngine"></property>
+	</bean>	
+	<bean id="showDistrictAction" class="ajp.electoralsystems.app.controller.ShowDistrictAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+		<property name="algorithmEngine" ref="algorithmEngine"></property>
+	</bean>
+	<bean id="languageAction" class="ajp.electoralsystems.app.controller.LanguageAction">
+		<constructor-arg ref="mainWindow"></constructor-arg>
+	</bean>	
+	<bean id="controller" class="ajp.electoralsystems.app.controller.Controller">
+		<property name="aboutAction" ref="aboutAction"></property>
+		<property name="clearAction" ref="clearAction"></property>
+		<property name="clearPartyTableAction" ref="clearPartyTableAction"></property>
+		<property name="configAction" ref="configAction"></property>
+		<property name="exitAction" ref="exitAction"></property>
+		<property name="getConfigAction" ref="getConfigAction"></property>
+		<property name="getDistrictFileAction" ref="getDistrictFileAction"></property>
+		<property name="getDistrictAction" ref="getDistrictAction"></property>
+		<property name="languageAction" ref="languageAction"></property>
+		<property name="saveDistrictFileAction" ref="saveDistrictFileAction"></property>
+		<property name="showConfigAction" ref="showConfigAction"></property>
+		<property name="showDistrictAction" ref="showDistrictAction"></property>
+		<property name="mainWindow" ref="mainWindow"></property>
+	</bean>
+
+	<!-- View -->
+	<!-- *********************************************************************************************************************************** -->
+	<bean id="mainWindow" class="ajp.electoralsystems.app.view.MainWindow">		
+	</bean>
+	
+
+
+
+
+	<!-- *********************************************************************************************************************************** -->
+
+	<bean id="loggingAspect" class="ajp.electoralsystems.app.aspect.LoggingAspect" />
+
+	<aop:aspectj-autoproxy>
+		<aop:include name="loggingAspect" />
+	</aop:aspectj-autoproxy>
+
+</beans>

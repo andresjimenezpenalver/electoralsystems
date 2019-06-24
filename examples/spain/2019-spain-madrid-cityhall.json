@@ -1,0 +1,133 @@
+{
+"district": {
+	    "abstention": 31.816873824986118,
+	    "turnout": 68.18312617501388,
+	    "census": 2397844,
+	    "blankVotes": 7052,
+	    "name": "MADRID",
+	    "parties": [
+	        {
+	            "votePercentage": 30.826,
+	            "name": "MASMADRID",
+	            "votePercentageOverCensus": 0,
+	            "votes": 503990
+	        },
+	        {
+	            "votePercentage": 24.142,
+	            "name": "PP",
+	            "votePercentageOverCensus": 0,
+	            "votes": 394708
+	        },
+	        {
+	            "votePercentage": 19.06,
+	            "name": "CS",
+	            "votePercentageOverCensus": 0,
+	            "votes": 311617
+	        },
+	        {
+	            "votePercentage": 13.675,
+	            "name": "PSOE",
+	            "votePercentageOverCensus": 0,
+	            "votes": 223582
+	        },
+	        {
+	            "votePercentage": 7.6,
+	            "name": "VOX",
+	            "votePercentageOverCensus": 0,
+	            "votes": 124252
+	        },
+	        {
+	            "votePercentage": 2.621,
+	            "name": "IUMNP",
+	            "votePercentageOverCensus": 0,
+	            "votes": 42855
+	        },
+	        {
+	            "votePercentage": 0.503,
+	            "name": "PACMA",
+	            "votePercentageOverCensus": 0,
+	            "votes": 8220
+	        },
+	        {
+	            "votePercentage": 0.12,
+	            "name": "PUMJ",
+	            "votePercentageOverCensus": 0,
+	            "votes": 1958
+	        },
+	        {
+	            "votePercentage": 0.115,
+	            "name": "UPYD",
+	            "votePercentageOverCensus": 0,
+	            "votes": 1882
+	        },
+	        {
+	            "votePercentage": 0.081,
+	            "name": "FEJONS",
+	            "votePercentageOverCensus": 0,
+	            "votes": 1322
+	        },
+	        {
+	            "votePercentage": 0.073,
+	            "name": "CNTG",
+	            "votePercentageOverCensus": 0,
+	            "votes": 1195
+	        },
+	        {
+	            "votePercentage": 0.068,
+	            "name": "PCASTC",
+	            "votePercentageOverCensus": 0,
+	            "votes": 1112
+	        },
+	        {
+	            "votePercentage": 0.057,
+	            "name": "PH",
+	            "votePercentageOverCensus": 0,
+	            "votes": 929
+	        },
+	        {
+	            "votePercentage": 0.048,
+	            "name": "PCTE",
+	            "votePercentageOverCensus": 0,
+	            "votes": 791
+	        },
+	        {
+	            "votePercentage": 0.046,
+	            "name": "PLIB",
+	            "votePercentageOverCensus": 0,
+	            "votes": 746
+	        },
+	        {
+	            "votePercentage": 0.045,
+	            "name": "PCPE",
+	            "votePercentageOverCensus": 0,
+	            "votes": 732
+	        },
+	        {
+	            "votePercentage": 0.038,
+	            "name": "MI",
+	            "votePercentageOverCensus": 0,
+	            "votes": 620
+	        },
+	        {
+	            "votePercentage": 0.033,
+	            "name": "MCE",
+	            "votePercentageOverCensus": 0,
+	            "votes": 544
+	        },
+	        {
+	            "votePercentage": 0.033,
+	            "name": "PYC",
+	            "votePercentageOverCensus": 0,
+	            "votes": 540
+	        },
+	        {
+	            "votePercentage": 0.028,
+	            "name": "ULEG",
+	            "votePercentageOverCensus": 0,
+	            "votes": 452
+	        }
+	    ],
+	    "invalidVotes": 5826,
+	    "seats": 57
+	}
+}
