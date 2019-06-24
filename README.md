@@ -20,7 +20,7 @@ In app module. For launch:
 electoralsystems $ mvn -f app/pom.xml spring-boot:run
 
 
-![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application.png?token=AMBVOWDLEDJLQXJQRVEREFK5B6QEG)
+![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application.png)
 
 
 
@@ -35,4 +35,4 @@ URL swagger: http://localhost:8080/v2/api-docs
 
 URL swagger-ui: http://localhost:8080/swagger-ui.html
 
-![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/api/src/site/images/swaggerui-restapi-application.png?token=AMBVOWCKOVVW7XPYY3EURDS5B6QK6)
+![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/api/src/site/images/swaggerui-restapi-application.png)
