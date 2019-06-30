@@ -1,7 +1,7 @@
 package ajp.electoralsystems.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +21,7 @@ public class SeatController {
 	
 	@Autowired SeatService service;
 	
-	@GetMapping
+	@PostMapping
 	public SeatsResponseBean getSeats(@RequestBody SeatsRequestBean requestBean) {
 		log.info("creating seats");
 		SeatsResponseBean response = service.getSeats(requestBean);
