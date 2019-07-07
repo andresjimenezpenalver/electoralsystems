@@ -1,5 +1,7 @@
 package ajp.electoralsystems.core.model;
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +10,8 @@ import lombok.Setter;
  */
 public class Party implements Comparable<Party> {
 
-	private @Getter @Setter String name = "";
+	@NotEmpty(message="Error.InvalidDistrictData.InvalidPartyName")
+	private @Getter @Setter String name;
 	private @Getter @Setter Long votes = 0L;
 	private @Getter @Setter Double votePercentage = 0.0;
 	private @Getter @Setter Double votePercentageOverCensus = 0.0;

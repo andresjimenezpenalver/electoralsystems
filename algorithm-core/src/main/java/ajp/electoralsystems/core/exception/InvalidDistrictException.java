@@ -13,6 +13,7 @@ public class InvalidDistrictException extends AppException {
 	public static final String ERROR_INVALID_CENSUS = "Error.InvalidDistrictData.InvalidCensus";
 	public static final String ERROR_INVALID_SEATS = "Error.InvalidDistrictData.InvalidSeats";
 	public static final String ERROR_INVALID_PARTY = "Error.InvalidDistrictData.InvalidParty";
+	public static final String ERROR_NO_VALID_VOTES = "Error.InvalidDistrictData.NoValidVotes";
 	
 	private static final long serialVersionUID = -4783086316395982389L;	
 	

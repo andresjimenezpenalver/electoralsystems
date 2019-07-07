@@ -34,9 +34,14 @@
 		</dependency>
 		<dependency>
 			<groupId>ajp.electoralsystems</groupId>
-			<artifactId>algorithm-dhont</artifactId>
+			<artifactId>algorithm-highestaverage</artifactId>
 			<version>${project.version}</version>		
 		</dependency>
+		<dependency>
+			<groupId>ajp.electoralsystems</groupId>
+			<artifactId>algorithm-quota</artifactId>
+			<version>${project.version}</version>		
+		</dependency>		
 		<dependency>
 			<groupId>ajp.electoralsystems</groupId>
 			<artifactId>i18n</artifactId>

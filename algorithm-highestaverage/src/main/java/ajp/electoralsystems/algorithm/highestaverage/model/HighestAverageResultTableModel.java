@@ -1,4 +1,4 @@
-package ajp.electoralsystems.algorithm.dhont.model;
+package ajp.electoralsystems.algorithm.highestaverage.model;
 
 import javax.swing.table.TableColumnModel;
 
@@ -9,15 +9,15 @@ import ajp.electoralsystems.i18n.Messages;
 /**
  * @author Andres Jimenez Penalver
  */
-public class DhontResultTableModel extends DefaultResultTableModel {
+public class HighestAverageResultTableModel extends DefaultResultTableModel {
 	
 	private static final long serialVersionUID = 3295993841383756196L;
 	//public static int SEPARATOR_COLUMN_INDEX=6;
 	public static int SEPARATOR_COLUMN_INDEX=0;
 	
-	private DhontAlgorithmResult dhontAlgorithmResult;
+	private HighestAverageAlgorithmResult dhontAlgorithmResult;
 	
-	public DhontResultTableModel(DhontAlgorithmResult dhontAlgorithmResult) {
+	public HighestAverageResultTableModel(HighestAverageAlgorithmResult dhontAlgorithmResult) {
 		super(dhontAlgorithmResult);
 		this.dhontAlgorithmResult=dhontAlgorithmResult;
 	}		

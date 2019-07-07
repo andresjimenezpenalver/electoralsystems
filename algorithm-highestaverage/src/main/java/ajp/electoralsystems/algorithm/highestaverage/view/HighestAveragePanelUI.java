@@ -1,4 +1,4 @@
-package ajp.electoralsystems.algorithm.dhont.view;
+package ajp.electoralsystems.algorithm.highestaverage.view;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -8,8 +8,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import ajp.electoralsystems.algorithm.dhont.model.DhontAlgorithmResult;
-import ajp.electoralsystems.algorithm.dhont.model.DhontResultTableModel;
+import ajp.electoralsystems.algorithm.highestaverage.model.HighestAverageAlgorithmResult;
+import ajp.electoralsystems.algorithm.highestaverage.model.HighestAverageResultTableModel;
 import ajp.electoralsystems.core.model.District;
 import ajp.electoralsystems.core.model.algorithm.AlgorithmResult;
 import ajp.electoralsystems.core.view.algorithm.DefaultPanelUI;
@@ -17,15 +17,15 @@ import ajp.electoralsystems.core.view.algorithm.DefaultPanelUI;
 /**
  * @author Andres Jimenez Penalver
  */
-public class DhontPanelUI extends DefaultPanelUI {
+public class HighestAveragePanelUI extends DefaultPanelUI {
 		
 	private JTable table;
 	
 	public JPanel getAlgorithmDetailPanel(District district, AlgorithmResult algorithmResult) {		
-		DhontAlgorithmResult dhontAlgorithmResult = (DhontAlgorithmResult) algorithmResult;
+		HighestAverageAlgorithmResult dhontAlgorithmResult = (HighestAverageAlgorithmResult) algorithmResult;
 		
-		DhontResultTableModel tableModel = new DhontResultTableModel(dhontAlgorithmResult);				
-		DhontResultTableCellRenderer cellRenderer = new DhontResultTableCellRenderer(dhontAlgorithmResult);	
+		HighestAverageResultTableModel tableModel = new HighestAverageResultTableModel(dhontAlgorithmResult);				
+		HighestAverageResultTableCellRenderer cellRenderer = new HighestAverageResultTableCellRenderer(dhontAlgorithmResult);	
 		table = new JTable(tableModel);
 		table.setDefaultRenderer(Number.class, cellRenderer);
 		table.setDefaultRenderer(Float.class, cellRenderer);
@@ -54,7 +54,7 @@ public class DhontPanelUI extends DefaultPanelUI {
 	
 	public void onLocaleChanged(String lang) {
 		super.onLocaleChanged(lang);
-		DhontResultTableModel.onLocaleChanged(lang, table.getColumnModel());
+		HighestAverageResultTableModel.onLocaleChanged(lang, table.getColumnModel());
 	}	
 	
 }

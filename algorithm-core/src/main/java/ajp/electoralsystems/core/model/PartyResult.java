@@ -21,7 +21,7 @@ public class PartyResult implements Comparable<PartyResult> {
 	public PartyResult(Party party) {
 		setParty(party);
 	}
-
+	
 	@Transient
 	public Party getParty() {
 		return party;

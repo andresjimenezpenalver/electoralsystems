@@ -22,7 +22,8 @@ public class TileResult implements LocaleChangeListener  {
 	}	
 	
 	public void onLocaleChanged(String lang) {
-		panel.setBorder(BorderFactory.createTitledBorder(Messages.getString("District.Outcome", lang)));
+		panel.setBorder(BorderFactory.createTitledBorder(Messages.getString("District.Outcome", lang)));		
+		tabbedPane.setTitleAt(0, Messages.getString("Algorithm.Comparator", lang));
 	}
 	
 	public void clear() {	

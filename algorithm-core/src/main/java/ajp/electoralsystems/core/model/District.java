@@ -3,6 +3,10 @@ package ajp.electoralsystems.core.model;
 import java.text.ParseException;
 import java.util.Arrays;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
@@ -14,14 +18,26 @@ import lombok.Setter;
  * @author Andres Jimenez Penalver
  */
 @JsonRootName(value = "district")
+@DistrictValid
 public class District {
 	
-	private @Getter @Setter Long census = 0L;
-	private @Getter @Setter String name = "";
-	private @Getter @Setter Integer seats = 0;
+	@NotNull
+	private @Getter @Setter Long census;
+	
+	@NotEmpty(message = "Error.InvalidDistrictData.InvalidName")	
+	private @Getter @Setter String name;
+	
+	@NotNull	
+	private @Getter @Setter Integer seats;
+	
+	@Valid @NotEmpty(message="Error.InvalidDistrictData.NoParties")
 	private @Getter Party parties[];
-	private @Getter @Setter Long blankVotes=0L;
-	private @Getter @Setter Long invalidVotes=0L;	
+	
+	@NotNull	
+	private @Getter @Setter Long blankVotes;
+	
+	@NotNull	
+	private @Getter @Setter Long invalidVotes;	
 	
 	public District() {
 	}
@@ -43,29 +59,53 @@ public class District {
 		long totalVotes = getTotalVotes();
 		for (Party party : parties) {
 			try {
-				String s = NumberUtils.getNumberFormat().format(100.0*party.getVotes()/ totalVotes);							
-				Double f = NumberUtils.getNumberFormat().parse(s).doubleValue();				
-				party.setVotePercentage(f);
+				if (totalVotes == 0) {
+					party.setVotePercentage(0.0);
+					
+				} else {
+					String s = NumberUtils.getNumberFormat().format(100.0*party.getVotes()/ totalVotes);							
+					Double f = NumberUtils.getNumberFormat().parse(s).doubleValue();				
+					party.setVotePercentage(f);
+				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
+
+	@JsonIgnore
+	public long getTotalValidVotesOverThreshold(double threshold) {
+		long total = 0;		
+		if (parties != null) {
+			for (int i=0; i<parties.length; i++) {
+				if (parties[i].isThresholdPassed(threshold) && parties[i].getVotes() != null) {
+					total += parties[i].getVotes().intValue();
+				} 				
+			}
+		}		
+		return total;
+	}
 	
 	@JsonIgnore
-	public long getTotalVotes() {
-		long total = 0;
+	public long getTotalValidVotes() {
+		long total = 0;		
 		if (parties != null) {
 			for (int i=0; i<parties.length; i++) {
 				if (parties[i].getVotes() != null) {
 					total += parties[i].getVotes().intValue();
 				} 				
 			}
-		}
+		}		
+		return total;
+	}
+	
+	@JsonIgnore
+	public long getTotalVotes() {
+		long total = 0;
+		total+=getTotalValidVotes();
 		total+=getBlankVotes();
-		total+=getInvalidVotes();
-		
+		total+=getInvalidVotes();		
 		return total;
 	}
 	
@@ -78,32 +118,29 @@ public class District {
 		this.parties = parties;
 		Arrays.sort(this.parties);
 	}
-
+	
 	@JsonIgnore
-	public Party getBlankVotesParty() {
+	private Party getPhantomParty(String name, Long votes) {
 		Party party = new Party();
-		party.setName("BLANKVOTES PARTY");
-		party.setVotes(getBlankVotes());
-		party.setVotePercentage(new Double(100*getBlankVotes())/census);
+		party.setName(name);
+		party.setVotes(votes);
+		party.setVotePercentage(new Double(100*votes)/census);
 		return party;
 	}
 	
 	@JsonIgnore
+	public Party getBlankVotesParty() {
+		return getPhantomParty("BLANKVOTES PARTY", getBlankVotes());
+	}
+	
+	@JsonIgnore
 	public Party getInvalidVotesParty() {
-		Party party = new Party();
-		party.setName("INVALIDVOTES PARTY");
-		party.setVotes(getInvalidVotes());
-		party.setVotePercentage(new Double(100*getInvalidVotes())/census);
-		return party;
+		return getPhantomParty("INVALIDVOTES PARTY", getInvalidVotes());
 	}
 
 	@JsonIgnore
 	public Party getAbstentionParty() {
-		Party party = new Party();
-		party.setName("ABSTENTION PARTY");
-		party.setVotes(census - getTotalVotes());
-		party.setVotePercentage(new Double(100*(census-getTotalVotes())/census));
-		return party;
+		return getPhantomParty("ABSTENTION PARTY", census - getTotalVotes());
 	}
 	
 	@JsonIgnore

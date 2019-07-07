@@ -1,4 +1,4 @@
-package ajp.electoralsystems.algorithm.dhont.model;
+package ajp.electoralsystems.algorithm.highestaverage.model;
 
 import java.text.ParseException;
 
@@ -25,13 +25,13 @@ public class DhontSlowAlgorithm extends AbstractAlgorithm {
 	}
 	
 	public AlgorithmResult apply(AlgorithmConfig config, District district) throws AppException {
-		DhontAlgorithmResult algorithmResult = new DhontAlgorithmResult(this.getClass(), district);
+		HighestAverageAlgorithmResult algorithmResult = new HighestAverageAlgorithmResult(this.getClass(), district);
 		calculateAssignmentTable(algorithmResult);
 		calculateSeats(algorithmResult);				
 		return algorithmResult;
 	}	
 	
-	private void calculateAssignmentTable(DhontAlgorithmResult algorithmResult) {
+	private void calculateAssignmentTable(HighestAverageAlgorithmResult algorithmResult) {
 		District district = algorithmResult.getDistrict();
 		if (district != null) {
 			int numberOfParties = district.getNumberOfParties();
@@ -57,7 +57,7 @@ public class DhontSlowAlgorithm extends AbstractAlgorithm {
 		}
 	}
 	
-	private void calculateSeats(DhontAlgorithmResult algorithmResult) {
+	private void calculateSeats(HighestAverageAlgorithmResult algorithmResult) {
 		int i;
 		int j;
 		int im;

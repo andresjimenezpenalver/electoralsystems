@@ -16,7 +16,9 @@ import ajp.electoralsystems.core.model.Party;
 import ajp.electoralsystems.core.model.algorithm.Algorithm;
 import ajp.electoralsystems.core.model.algorithm.AlgorithmResult;
 import ajp.electoralsystems.core.utils.NumberUtils;
+import ajp.electoralsystems.core.view.algorithm.AlgorithmComparationPanel;
 import ajp.electoralsystems.core.view.algorithm.AlgorithmPanelUI;
+import ajp.electoralsystems.i18n.Messages;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -80,7 +82,12 @@ public class ShowDistrictAction implements Action {
 			TileResult resultTile = mainWindow.getResultTile();
 			resultTile.getTabbedPane().setVisible(true);
 			
-			DistrictAlgorithmResult data = getAlgorithmEngine().execute(district);			
+			DistrictAlgorithmResult data = getAlgorithmEngine().execute(district);		
+			
+			AlgorithmComparationPanel algorithmComparationPanel = new AlgorithmComparationPanel();
+			mainWindow.addLocaleChangeListener(algorithmComparationPanel);
+			resultTile.getTabbedPane().addTab(Messages.getString("Algorithm.Comparator"), algorithmComparationPanel.createPanel(district, data));
+			
 			Set<Algorithm> keys = data.getAlgorithmsApplied();
 			for (Algorithm key : keys) {
 				AlgorithmResult result = data.getAlgorithmResult(key);

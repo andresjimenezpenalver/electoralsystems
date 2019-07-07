@@ -113,12 +113,6 @@ public class MainWindow extends JFrame {
 		for (LocaleChangeListener listener : localeChangeListeners) {
     		listener.onLocaleChanged(lang);
     	}
-		
-		//getAppMenuBar().changeLanguage(lang);		
-		//getAppToolBar().changeLanguage(lang);		
-//		getConfigTile().changeLanguage(lang);
-//		getDataTile().changeLanguage(lang);
-//		getResultTile().changeLanguage(lang);
 	}
 	
 	private void bindingEvents() {

@@ -16,16 +16,33 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- Algorithms -->
 	<!-- *********************************************************************************************************************************** -->
 	<bean id="dhontAlgorithm"
-		class="ajp.electoralsystems.algorithm.dhont.model.DhontAlgorithm"></bean>
+		class="ajp.electoralsystems.algorithm.highestaverage.model.DhontAlgorithm"></bean>
 
 	<bean id="dhontSlowAlgorithm"
-		class="ajp.electoralsystems.algorithm.dhont.model.DhontSlowAlgorithm"></bean>
+		class="ajp.electoralsystems.algorithm.highestaverage.model.DhontSlowAlgorithm"></bean>
+
+	<bean id="droopQuotaAlgorithm"
+		class="ajp.electoralsystems.algorithm.quota.model.DroopQuotaAlgorithm"></bean>
+
+	<bean id="hareQuotaAlgorithm"
+		class="ajp.electoralsystems.algorithm.quota.model.HareQuotaAlgorithm"></bean>
+
+	<bean id="imperialiQuotaAlgorithm"
+		class="ajp.electoralsystems.algorithm.quota.model.ImperialiQuotaAlgorithm"></bean>
+
+	<bean id="sainteLagueAlgorithm"
+		class="ajp.electoralsystems.algorithm.highestaverage.model.SainteLagueAlgorithm"></bean>
+						
 	<!-- Service -->	
 	<bean id="algorithmEngine" class="ajp.electoralsystems.algorithm.engine.AlgorithmEngine">
 		<property name="algorithms">
 	        <list value-type="ajp.electoralsystems.model.algorithm">
 	            <ref bean="dhontAlgorithm"/>
-	            <ref bean="dhontSlowAlgorithm"/> 
+	            <!-- <ref bean="dhontSlowAlgorithm"/> -->
+	            <ref bean="droopQuotaAlgorithm"/>
+	            <ref bean="hareQuotaAlgorithm"/>
+	            <ref bean="imperialiQuotaAlgorithm"/>
+	            <ref bean="sainteLagueAlgorithm"/>
 	        </list>
 	    </property>    
 	</bean>

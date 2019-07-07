@@ -1,17 +1,19 @@
 package ajp.electoralsystems.app.controller;
 
 import java.text.ParseException;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
-
-import org.springframework.util.StringUtils;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import ajp.electoralsystems.app.view.MainWindow;
 import ajp.electoralsystems.app.view.TileData;
 import ajp.electoralsystems.core.exception.AppException;
-import ajp.electoralsystems.core.exception.InvalidDistrictException;
 import ajp.electoralsystems.core.model.District;
-import ajp.electoralsystems.core.model.DistrictValidator;
 import ajp.electoralsystems.core.model.Party;
 import ajp.electoralsystems.core.utils.NumberUtils;
 import ajp.electoralsystems.i18n.Messages;
@@ -27,13 +29,6 @@ public class GetDistrictAction implements Action {
 		this.mainWindow = mainWindow;
 	}
 	
- 	/**
-	 * Returns the district of the GUI
-	 * 
-	 * @param object 
-	 * @return a District object
-	 * @throws AppException
-	 */
 	public Object execute(Object object) throws AppException {		
 		District district = null;
 		try {
@@ -41,60 +36,35 @@ public class GetDistrictAction implements Action {
 			district = new District();
 			
 			//name 
-			String name = dataTile.getTxtName().getText();
-			if (StringUtils.isEmpty(name)) {
-				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_NAME);
-			}
+			String name = dataTile.getTxtName().getText();			
 			district.setName(name);
 			
 			//census
 			String census = dataTile.getTxtCensus().getText();
-			if (StringUtils.isEmpty(census)) {
-				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_CENSUS);
-			}
-			district.setCensus(new Long(census));
+			district.setCensus(census.isEmpty() ? 0 : new Long(census));
 			
 			//seats
 			String seats = dataTile.getTxtSeats().getText();
-			if (StringUtils.isEmpty(seats)) {
-				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_SEATS);
-			}
-			district.setSeats(new Integer(seats));
+			district.setSeats(seats.isEmpty() ? 0 : new Integer(seats));
 
 			//blank votes
 			String blankVotes = dataTile.getTxtBlankVotes().getText();
-			if (!blankVotes.isEmpty()) {
-				district.setBlankVotes(new Long(blankVotes));
-			}
-//			if (StringUtils.isEmpty(seats)) {
-//				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_SEATS);
-//			}
+			district.setBlankVotes(blankVotes.isEmpty() ? 0 : new Long(blankVotes));
 			
 			//invalid votes
 			String invalidVotes = dataTile.getTxtInvalidVotes().getText();
-			if (!invalidVotes.isEmpty()) {
-				district.setInvalidVotes(new Long(invalidVotes));	
-			}
-//			if (StringUtils.isEmpty(seats)) {
-//				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_SEATS);
-//			}
+			district.setInvalidVotes(invalidVotes.isEmpty() ? 0 : new Long(invalidVotes));	
 			
 			//parties
 			int numberOfParties = dataTile.getTblParties().getRowCount();
-			if (numberOfParties == 0) {
-				throw new InvalidDistrictException(InvalidDistrictException.ERROR_NO_PARTIES);
-			}
 			Party[] parties = new Party[numberOfParties];
 			int totalVotes = 0;
 			for (int i = 0; i < numberOfParties; i++) {
 				Party party = new Party();
 				Object partyName = dataTile.getTblParties().getValueAt(i, 0);
 				Object partyVotes = dataTile.getTblParties().getValueAt(i, 1);
-				if (partyName == null || partyVotes == null) {
-					throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_PARTY);
-				}
 				party.setName(partyName.toString());
-				party.setVotes(new Long(partyVotes.toString()));
+				party.setVotes((partyVotes == null || partyVotes.toString().isEmpty()) ? 0 : new Long(partyVotes.toString()));
 					
 				parties[i] = party;
 				totalVotes += party.getVotes();
@@ -114,10 +84,16 @@ public class GetDistrictAction implements Action {
 			}			
 			
 			//validate district
-			new DistrictValidator().validate(district);
+			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		    Validator validator = factory.getValidator();
+		    Set<ConstraintViolation<District>> constraintViolations = validator.validate(district);
+		    if(constraintViolations.size() > 0){
+		    	String msg = constraintViolations.stream().map(c -> Messages.getString(c.getMessage())).collect(Collectors.joining(System.lineSeparator()));	    	
+		    	throw new AppException(msg);
+		    }
 		
 		} catch (AppException e) {
-			JOptionPane.showMessageDialog(null, Messages.getString(e.getMessage()), Messages.getString("Error.InvalidDistrictData"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), Messages.getString("Error.InvalidDistrictData"), JOptionPane.ERROR_MESSAGE);
 			throw e;
 			
 		} catch (Exception e) {

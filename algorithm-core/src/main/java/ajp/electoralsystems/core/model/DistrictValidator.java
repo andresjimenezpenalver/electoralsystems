@@ -1,46 +1,46 @@
 package ajp.electoralsystems.core.model;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import ajp.electoralsystems.core.exception.InvalidDistrictException;
 
 /**
  * @author Andres Jimenez Penalver
  */
-public class DistrictValidator {
+public class DistrictValidator implements ConstraintValidator<DistrictValid, District> {
 
-	public void validate(District district) throws InvalidDistrictException {
+    @Override
+    public void initialize(DistrictValid constraintAnnotation) {
+    }
+	
+	@Override
+	public boolean isValid(District district, ConstraintValidatorContext context) {
+		boolean valid=true;
+		context.disableDefaultConstraintViolation();		
 		
-		if (isEmpty(district.getName())) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_NAME);
-		}
-		if (isEmpty(district.getCensus())) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_CENSUS);
-		}
-		if (isEmpty(district.getSeats())) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_SEATS);
+		if (district.getCensus() == 0) {
+			valid =false;
+			context.buildConstraintViolationWithTemplate(InvalidDistrictException.ERROR_INVALID_CENSUS).addConstraintViolation();
+		} 
+		if (district.getTotalValidVotes() == 0) {
+			valid =false;
+			context.buildConstraintViolationWithTemplate(InvalidDistrictException.ERROR_NO_VALID_VOTES).addConstraintViolation();
 		}
 		if (district.getTotalVotes() > district.getCensus()) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_TOTALVOTES_BIGGER_CENSUS);
-
-		} else if (district.getSeats() > district.getCensus()) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_TOTALSEATS_BIGGER_CENSUS);
-
-		} else if (district.getNumberOfParties() > district.getCensus()) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_NUMBEROFPARTIES_BIGGER_CENSUS);
-
-		} else if (district.getParties() == null || district.getParties().length == 0) {
-			throw new InvalidDistrictException(InvalidDistrictException.ERROR_NO_PARTIES);
+			valid =false;
+			context.buildConstraintViolationWithTemplate(InvalidDistrictException.ERROR_TOTALVOTES_BIGGER_CENSUS).addConstraintViolation();
+		} 
+		if (district.getSeats() > district.getCensus()) {
+			valid =false;
+			context.buildConstraintViolationWithTemplate(InvalidDistrictException.ERROR_TOTALSEATS_BIGGER_CENSUS).addConstraintViolation();
+		} 
+		if (district.getNumberOfParties() > district.getCensus()) {
+			valid =false;
+			context.buildConstraintViolationWithTemplate(InvalidDistrictException.ERROR_NUMBEROFPARTIES_BIGGER_CENSUS).addConstraintViolation();
 		}
 		
-		for (int i = 0; i < district.getParties().length; i++) {
-			Party party = district.getParties()[i];
-			if (isEmpty(party.getName()) || isEmpty(party.getVotes())) {
-				throw new InvalidDistrictException(InvalidDistrictException.ERROR_INVALID_PARTY);
-			}
-		}
-	}
-	
-	private boolean isEmpty(Object object) {
-		return object == null || object.toString().trim().length()==0;
+		return valid;
 	}
 
 }

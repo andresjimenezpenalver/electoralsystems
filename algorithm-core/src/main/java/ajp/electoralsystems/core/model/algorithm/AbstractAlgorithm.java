@@ -11,6 +11,10 @@ public abstract class AbstractAlgorithm implements Algorithm {
 	private @Getter @Setter boolean enabled;
 	
 	public String getProvider() {
+		return this.getClass().getSimpleName();
+	}
+	
+	public String toString() {
 		return this.getClass().getName();
 	}
 	

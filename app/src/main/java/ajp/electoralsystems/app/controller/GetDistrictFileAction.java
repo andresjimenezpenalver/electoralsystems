@@ -44,10 +44,10 @@ public class GetDistrictFileAction implements Action {
             }
     
         } catch (AppException e) {
-        	JOptionPane.showMessageDialog(null, Messages.getFormattedString("Error.GettingFile", file.getPath()), Messages.getString("Error"), JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(null, e.getMessage(), Messages.getFormattedString("Error.GettingFile", file.getName()), JOptionPane.ERROR_MESSAGE);
         	
         } catch (Exception e) {
-        	JOptionPane.showMessageDialog(null, Messages.getFormattedString("Error.GettingFile", file.getPath()), Messages.getString("Error"), JOptionPane.ERROR_MESSAGE);			        
+        	JOptionPane.showMessageDialog(null, e.getMessage(), Messages.getFormattedString("Error.GettingFile", file.getName()), JOptionPane.ERROR_MESSAGE);			        
         }
         return district;
 		
