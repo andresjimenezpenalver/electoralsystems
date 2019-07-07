@@ -1,5 +1,9 @@
 package ajp.electoralsystems.api.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import ajp.electoralsystems.core.model.District;
 import ajp.electoralsystems.core.model.algorithm.AlgorithmConfig;
 
@@ -8,7 +12,10 @@ import ajp.electoralsystems.core.model.algorithm.AlgorithmConfig;
  */
 public class SeatsRequestBean {
 
+	@Valid
 	private AlgorithmConfig config;
+	@Valid
+	@NotNull	
 	private District district;
 	
 	public SeatsRequestBean() {		

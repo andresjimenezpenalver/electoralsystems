@@ -1,5 +1,7 @@
 package ajp.electoralsystems.api.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +24,7 @@ public class SeatController {
 	@Autowired SeatService service;
 	
 	@PostMapping
-	public SeatsResponseBean getSeats(@RequestBody SeatsRequestBean requestBean) {
+	public SeatsResponseBean getSeats(@Valid @RequestBody SeatsRequestBean requestBean) {
 		log.info("creating seats");
 		SeatsResponseBean response = service.getSeats(requestBean);
 		return response;
