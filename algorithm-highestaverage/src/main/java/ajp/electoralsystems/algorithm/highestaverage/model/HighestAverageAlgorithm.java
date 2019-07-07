@@ -1,4 +1,4 @@
-package ajp.electoralsystems.algorithm.dhont.model;
+package ajp.electoralsystems.algorithm.highestaverage.model;
 
 import java.util.Arrays;
 
@@ -9,27 +9,21 @@ import ajp.electoralsystems.core.model.PartyResult;
 import ajp.electoralsystems.core.model.algorithm.AbstractAlgorithm;
 import ajp.electoralsystems.core.model.algorithm.AlgorithmConfig;
 import ajp.electoralsystems.core.model.algorithm.AlgorithmResult;
-import ajp.electoralsystems.core.model.algorithm.StepAlgorithm;
 
 /**
  * @author Andres Jimenez Penalver
  */
-//TODO: i18n
-@StepAlgorithm(step="Se dispone una tabla con ne columnas y np filas. En las filas estan los partidos politicos, ordenados en orden decreciente segun el numero de votos. En las columnas estan los escaños a distribuir")
-@StepAlgorithm(step="Cada celda (i, j) corresponde al resultado de dividir el nº de votos del partido politico que esta en la fila i-esima por el nº de escaño correspondiente a la columna j-esima.")
-@StepAlgorithm(step="Las ne celdas que tengan mayor valor son las que han obtenido escaño.")
-public class DhontAlgorithm extends AbstractAlgorithm {
+
+public abstract class HighestAverageAlgorithm extends AbstractAlgorithm {
 	
-	public DhontAlgorithm() {
+	public HighestAverageAlgorithm() {
 		super();
 	}
+			
+	public abstract float getQuota(long votes, int seats);
 	
-	public String getName() {
-		return "DHONT";
-	}
-		
 	public AlgorithmResult apply(AlgorithmConfig config, District district) throws AppException {
-		DhontAlgorithmResult algorithmResult = new DhontAlgorithmResult(this.getClass(), district);		
+		HighestAverageAlgorithmResult algorithmResult = new HighestAverageAlgorithmResult(this.getClass(), district);		
 			
 		if (district != null) {
 			int numberOfParties = district.getNumberOfParties();
@@ -53,7 +47,7 @@ public class DhontAlgorithm extends AbstractAlgorithm {
 				int index = 0;
 				for (int j=1; j<cursor.length; j++) {
 					party = district.getParties()[j];
-					if (!party.isThresholdPassed(threshold)) {
+					if (!party.isThresholdPassed(threshold) || party.getVotes() == 0) {
 						break;
 						
 					} else if (cursor[j] > largest) {
@@ -67,7 +61,8 @@ public class DhontAlgorithm extends AbstractAlgorithm {
 				algorithmResult.getWinnerAssignmentTable()[index][seats[index]] = true;
 				party=district.getParties()[index];
 				seats[index]+=1;				
-				cursor[index]=party.getVotes()/(1+seats[index]);				
+				//cursor[index]=party.getVotes()/(1+seats[index]);
+				cursor[index]=getQuota(party.getVotes(), seats[index]);
 			}
 			
 			for (int i=0; i < seats.length; i++) {

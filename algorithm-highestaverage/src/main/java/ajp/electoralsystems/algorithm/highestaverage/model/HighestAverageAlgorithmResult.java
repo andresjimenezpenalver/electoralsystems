@@ -1,8 +1,8 @@
-package ajp.electoralsystems.algorithm.dhont.model;
+package ajp.electoralsystems.algorithm.highestaverage.model;
 
 import java.beans.Transient;
 
-import ajp.electoralsystems.algorithm.dhont.view.DhontPanelUI;
+import ajp.electoralsystems.algorithm.highestaverage.view.HighestAveragePanelUI;
 import ajp.electoralsystems.core.model.District;
 import ajp.electoralsystems.core.model.algorithm.AbstractAlgorithmResult;
 import ajp.electoralsystems.core.model.algorithm.Algorithm;
@@ -11,7 +11,7 @@ import ajp.electoralsystems.core.view.algorithm.AlgorithmPanelUI;
 /**
  * @author Andres Jimenez Penalver
  */
-public class DhontAlgorithmResult extends AbstractAlgorithmResult {
+public class HighestAverageAlgorithmResult extends AbstractAlgorithmResult {
 
 	/**
 	 * Array bidimensional que almacena booleanos que indican que celdas
@@ -30,7 +30,7 @@ public class DhontAlgorithmResult extends AbstractAlgorithmResult {
 	 */
 	private float[] seatCostArray;
 
-	public DhontAlgorithmResult(Class<? extends Algorithm> algorithmProviderClass, District district) {
+	public HighestAverageAlgorithmResult(Class<? extends Algorithm> algorithmProviderClass, District district) {
 		super(algorithmProviderClass, district);
 	}	
 	
@@ -63,7 +63,7 @@ public class DhontAlgorithmResult extends AbstractAlgorithmResult {
 
 	@Transient
 	public AlgorithmPanelUI getUI() {
-		return new DhontPanelUI();
+		return new HighestAveragePanelUI();
 	}
 	
 }
