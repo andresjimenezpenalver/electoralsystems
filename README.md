@@ -22,6 +22,9 @@ electoralsystems $ mvn -f app/pom.xml spring-boot:run
 
 ![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application.png)
 
+Example of D'Hont Algorithm Results:
+
+![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application-dhont-algorithm.png)
 
 
 ## REST API Application 
