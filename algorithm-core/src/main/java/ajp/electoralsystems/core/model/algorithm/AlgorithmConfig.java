@@ -30,4 +30,24 @@ public class AlgorithmConfig {
 		return isAbstentionVotesAsParty() || isBlankVotesAsParty() || isInvalidVotesAsParty();
 	}
 	
+	public AlgorithmConfig withAbstentionVotesAsParty(Boolean abstentionVotesAsParty) {
+		setAbstentionVotesAsParty(abstentionVotesAsParty);
+		return this;
+	}
+	
+	public AlgorithmConfig withBlankVotesAsParty(Boolean blankVotesAsParty) {
+		setBlankVotesAsParty(blankVotesAsParty);
+		return this;
+	}
+	
+	public AlgorithmConfig withInvalidVotesAsParty(Boolean invalidVotesAsParty) {
+		setInvalidVotesAsParty(invalidVotesAsParty);
+		return this;
+	}
+	
+	public AlgorithmConfig withVoteThreshold(int voteThreshold) {
+		setVoteThreshold(voteThreshold);
+		return this;
+	}
+	
 }

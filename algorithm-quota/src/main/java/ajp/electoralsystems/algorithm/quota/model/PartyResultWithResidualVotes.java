@@ -10,17 +10,14 @@ import lombok.Setter;
  */
 public class PartyResultWithResidualVotes extends PartyResult {
 
-	private @Getter @Setter Integer votesPerQuota = 0;
 	private @Getter @Setter Integer residualVotes = 0;
-
-	public PartyResultWithResidualVotes() {
-	}
+	private @Getter @Setter Integer votesPerQuota = 0;
 
 	public PartyResultWithResidualVotes(Party party) {
 		setParty(party);
 	}
 
-	public void incSeats() {
+	public void incrementSeats() {
 		setSeats(getSeats()+1);
 	}
 	
@@ -28,6 +25,7 @@ public class PartyResultWithResidualVotes extends PartyResult {
 		StringBuffer sb = new StringBuffer();
 		sb.append(super.toString());
 		sb.append("residualVotes: ").append(residualVotes).append('\n');
+		sb.append("votesPerQuota: ").append(votesPerQuota).append('\n');
 		return sb.toString();
 	}
 

@@ -58,4 +58,14 @@ public class Party implements Comparable<Party> {
 		return sb.toString();		
 	}
 	
+	public Party withName(String name) {
+		setName(name);
+		return this;
+	}
+
+	public Party withVotes(Long votes) {
+		setVotes(votes);
+		return this;
+	}
+
 }
