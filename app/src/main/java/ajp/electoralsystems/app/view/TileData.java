@@ -51,8 +51,10 @@ public class TileData implements LocaleChangeListener {
 	private @Getter JLabel lblTurnout;
 	private @Getter JLabel lblAbstention;
 	private @Getter JLabel lblVotes;
+	private @Getter JLabel lblValidVotes;
 	private @Getter JTextField txtTurnout;
 	private @Getter JTextField txtVotes;
+	private @Getter JTextField txtValidVotes;	
 	private @Getter JTextField txtAbstention;
 
 	
@@ -87,6 +89,7 @@ public class TileData implements LocaleChangeListener {
 		txtBlankVotes.setText("");
 		txtInvalidVotes.setText("");
 				
+		txtValidVotes.setVisible(false);
 		txtVotes.setVisible(false);
 		txtTurnout.setVisible(false);		
 		txtAbstention.setVisible(false);	
@@ -101,6 +104,7 @@ public class TileData implements LocaleChangeListener {
 		lblSeats.setText(Messages.getString("Seats", lang));
 		lblBlankVotes.setText(Messages.getString("Votes.Blank", lang));
 		lblInvalidVotes.setText(Messages.getString("Votes.Invalid", lang));
+		lblValidVotes.setText(Messages.getString("Votes.Valid", lang));
 		lblVotes.setText(Messages.getString("Votes.Total", lang));
 		lblTurnout.setText(Messages.getString("Turnout", lang));
 		lblAbstention.setText(Messages.getString("Abstention", lang));
@@ -115,7 +119,7 @@ public class TileData implements LocaleChangeListener {
 	
 	private void create() {	
 		JPanel aux = new JPanel();
-		aux.setLayout(new GridLayout(9, 2));
+		aux.setLayout(new GridLayout(10, 2));
 		
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -197,6 +201,16 @@ public class TileData implements LocaleChangeListener {
         txtInvalidVotes.setVisible(true);
 		aux.add(txtInvalidVotes);
 		
+		lblValidVotes = new JLabel(Messages.getString("Votes.Valid"));
+		lblValidVotes.setHorizontalAlignment(JLabel.RIGHT);		
+		lblValidVotes.setVisible(true);
+
+		txtValidVotes = new JTextField();
+		txtValidVotes.setHorizontalAlignment(JTextField.RIGHT);
+		txtValidVotes.setEditable(false);
+		txtValidVotes.setToolTipText(Messages.getString("Votes.Valid"));
+		txtValidVotes.setVisible(true);
+		
 		lblVotes = new JLabel(Messages.getString("Votes.Total"));
 		lblVotes.setHorizontalAlignment(JLabel.RIGHT);		
 		lblVotes.setVisible(true);
@@ -228,6 +242,8 @@ public class TileData implements LocaleChangeListener {
 		txtAbstention.setToolTipText(Messages.getString("Abstention"));
 		txtAbstention.setVisible(true);
 
+		aux.add(lblValidVotes);
+		aux.add(txtValidVotes);
 		aux.add(lblVotes);
 		aux.add(txtVotes);
 		aux.add(lblTurnout);
