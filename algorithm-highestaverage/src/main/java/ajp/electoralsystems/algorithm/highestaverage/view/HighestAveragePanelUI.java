@@ -4,9 +4,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import ajp.electoralsystems.algorithm.highestaverage.model.HighestAverageAlgorithmResult;
 import ajp.electoralsystems.algorithm.highestaverage.model.HighestAverageResultTableModel;
@@ -26,16 +23,12 @@ public class HighestAveragePanelUI extends DefaultPanelUI {
 		
 		HighestAverageResultTableModel tableModel = new HighestAverageResultTableModel(dhontAlgorithmResult);				
 		HighestAverageResultTableCellRenderer cellRenderer = new HighestAverageResultTableCellRenderer(dhontAlgorithmResult);	
-		table = new JTable(tableModel);
-		table.setDefaultRenderer(Number.class, cellRenderer);
-		table.setDefaultRenderer(Float.class, cellRenderer);
-		table.setDefaultRenderer(String.class, cellRenderer);		
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);		
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent lse) {
-				table.clearSelection();
-			}
-		});
+		
+		table = new JTable(tableModel);		
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+		}		
+		
 		if (tableModel.getColumnCount() <= 13) {
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		} else {

@@ -35,6 +35,7 @@ public class DefaultResultTableModel extends AbstractTableModel {
 			break;
 			case 1:
 			case 4:
+			case 7:
 				columnClass = Integer.class;
 			break;
 		}
@@ -46,7 +47,7 @@ public class DefaultResultTableModel extends AbstractTableModel {
 		if (district == null) {
 			return 0;				
 		} else {
-			return 7;	
+			return 8;	
 		}			
 	}
 	
@@ -58,6 +59,7 @@ public class DefaultResultTableModel extends AbstractTableModel {
 		tcm.getColumn(4).setHeaderValue(Messages.getString("Seats",lang));
 		tcm.getColumn(5).setHeaderValue(Messages.getString("Seats",lang)+ "(%)");
 		tcm.getColumn(6).setHeaderValue(Messages.getString("Seats.Cost",lang)+ "(%)");
+		tcm.getColumn(7).setHeaderValue(Messages.getString("Votes.DiffLastSeat",lang));
 	}
 	
 	public String getColumnName(int column) {
@@ -76,6 +78,8 @@ public class DefaultResultTableModel extends AbstractTableModel {
 			return Messages.getString("Seats") + "(%)";
 		case 6:
 			return Messages.getString("Seats.Cost");
+		case 7:
+			return Messages.getString("Votes.DiffLastSeat");			
 		default:
 			return "";
 		}
@@ -119,6 +123,9 @@ public class DefaultResultTableModel extends AbstractTableModel {
 				break;
 				case 6:
 					value = r.getSeatCost();
+				break;
+				case 7:
+					value = r.getDiffVotesForLastSeat();					
 				break;
 			}
 			return value;	

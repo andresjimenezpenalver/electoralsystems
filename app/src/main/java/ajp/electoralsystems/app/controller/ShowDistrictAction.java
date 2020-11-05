@@ -66,6 +66,9 @@ public class ShowDistrictAction implements Action {
 		}		
 		dataTile.getSpParties().setViewportView(dataTile.getTblParties());
 		
+		dataTile.getLblValidVotes().setVisible(true);
+		dataTile.getTxtValidVotes().setVisible(true);
+		dataTile.getTxtValidVotes().setText(String.valueOf(district.getTotalValidVotes()));		
 		dataTile.getLblVotes().setVisible(true);
 		dataTile.getTxtVotes().setVisible(true);
 		dataTile.getTxtVotes().setText(String.valueOf(district.getTotalVotes()));

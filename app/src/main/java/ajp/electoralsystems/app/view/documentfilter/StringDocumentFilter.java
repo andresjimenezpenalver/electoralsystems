@@ -79,7 +79,7 @@ public class StringDocumentFilter extends DocumentFilter {
 		if (proposedValue.length() > 0) {
 			for (int i = 0; i < proposedValue.length(); i++) {
 				char character = proposedValue.charAt(i);
-				boolean valid = Character.isLetter(character) || '+'==character || '-'==character || '.'==character;
+				boolean valid = Character.isLetter(character) || '+'==character || '-'==character || '.'==character || ' '==character;
 				if (!valid) {
 					throw new BadLocationException(proposedValue, offset);
 				}				

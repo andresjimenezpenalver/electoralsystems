@@ -3,7 +3,6 @@ package ajp.electoralsystems.algorithm.highestaverage.view;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -24,21 +23,18 @@ public class HighestAverageResultTableCellRenderer extends DefaultTableCellRende
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-			int row, int column) {
-		JLabel label = new JLabel();
-		if ((column > HighestAverageResultTableModel.SEPARATOR_COLUMN_INDEX) && (dhontAlgorithmResult.getWinnerAssignmentTable()[row][column - (HighestAverageResultTableModel.SEPARATOR_COLUMN_INDEX+1)])) {
-			label.setForeground(Color.GRAY);
+			int row, int column) {		
+		Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		if ((column > HighestAverageResultTableModel.SEPARATOR_COLUMN_INDEX) 
+			&& (dhontAlgorithmResult.getWinnerAssignmentTable()[row][column - (HighestAverageResultTableModel.SEPARATOR_COLUMN_INDEX+1)])) {
+			cellComponent.setForeground(Color.GRAY);
+			cellComponent.setBackground(Color.GREEN);
+			
 		} else {
-			label.setForeground(Color.BLACK);
+			cellComponent.setForeground(Color.BLACK);
+			cellComponent.setBackground(Color.WHITE);
 		}
-		if (column == 0) {
-			label.setHorizontalAlignment(JLabel.LEFT);
-		} else {
-			label.setHorizontalAlignment(JLabel.RIGHT);
-		}
-		label.setFont(table.getFont());
-		label.setText(value.toString());
-		return label;
+		return cellComponent;
 	}
 
 }

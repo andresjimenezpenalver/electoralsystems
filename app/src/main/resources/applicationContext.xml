@@ -18,9 +18,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="dhontAlgorithm"
 		class="ajp.electoralsystems.algorithm.highestaverage.model.DhontAlgorithm"></bean>
 
-	<bean id="dhontSlowAlgorithm"
-		class="ajp.electoralsystems.algorithm.highestaverage.model.DhontSlowAlgorithm"></bean>
-
 	<bean id="droopQuotaAlgorithm"
 		class="ajp.electoralsystems.algorithm.quota.model.DroopQuotaAlgorithm"></bean>
 
@@ -38,7 +35,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="algorithms">
 	        <list value-type="ajp.electoralsystems.model.algorithm">
 	            <ref bean="dhontAlgorithm"/>
-	            <!-- <ref bean="dhontSlowAlgorithm"/> -->
 	            <ref bean="droopQuotaAlgorithm"/>
 	            <ref bean="hareQuotaAlgorithm"/>
 	            <ref bean="imperialiQuotaAlgorithm"/>

@@ -14,7 +14,9 @@ public class PartyResult implements Comparable<PartyResult> {
 	private @Getter @Setter Integer seats = 0;
 	private @Getter @Setter double seatPercentage = 0.0;
 	private @Getter @Setter double seatCost = 0.0;
-
+	private @Getter @Setter Integer diffVotesForLastSeat = 0;
+	private @Getter @Setter Boolean hasLastSeat = false;
+	
 	public PartyResult() {
 	}
 
@@ -63,6 +65,7 @@ public class PartyResult implements Comparable<PartyResult> {
 		sb.append("seats: ").append(seats).append('\n');
 		sb.append("seat percentage: ").append(seatPercentage).append('\n');
 		sb.append("seat cost: ").append(seatCost).append('\n');
+		sb.append("diff votes last seat: ").append(diffVotesForLastSeat).append('\n');
 		return sb.toString();
 	}
 
