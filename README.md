@@ -1,23 +1,36 @@
 
 This is a maven multimodule project developed in Java for simulating electoral systems.
-Currently only D'Hont Method is available.
 
-# After cloning
+Currently the following methods or algorithms are supported: 
+- D'Hont Method
+- Sainte-Laguë Method
+- Droop Quota
+- Hare Quota
+- Imperiali Quota
+
+
+## Building the applications
 
 You need Java 8+ and maven.
+Use the following command to build the applications:
 
+```
 $ cd electoralsystems
+
 electoralsystems $ mvn install
+```
 
 
-# Available applications
+## Launching the applications
 
 
-## Swing Application
+### GUI/Swing Application
 
-In app module. For launch:
+Use the following command to launch the GUI/Swing Application:
 
+```
 electoralsystems $ mvn -f app/pom.xml spring-boot:run
+```
 
 
 ![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application.png)
@@ -27,11 +40,13 @@ Example of D'Hont Algorithm Results:
 ![alt text](https://raw.githubusercontent.com/andresjimenezpenalver/electoralsystems/master/app/src/site/images/swing-application-dhont-algorithm.png)
 
 
-## REST API Application 
+### REST API Application 
 
-In api module. For launch:
+Use the following command to launch the API Application:
 
+```
 electoralsystems $ mvn -f api/pom.xml spring-boot:run 
+```
 
 
 URL swagger: http://localhost:8080/v2/api-docs 
